@@ -1,0 +1,28 @@
+<%- include('../partials/_header') %> <!-- Header ı import ettik include ile-->
+
+
+<div class="columns is-multiline">
+<% makaleler.forEach((makale,index)=>{ %>
+
+        <div class="column is-4">
+            <%- include('../partials/_makale_card',{makale,index}) %>
+        </div>
+
+
+
+
+    <%})%>
+
+</div>
+
+<!-- * Sayfalama mantığı -->
+<%
+const sayfaSayisi=sayfalama['x-wp-totalpages'];
+const toplamVeriSayisi=sayfalama["x-wp-total"];
+const aktifSayfa=aktifPage; //sağdaki aktifpage controllerdan gönderildi.
+%>
+
+
+<div class="column is-12">
+<%- include('../partials/_pagination',{sayfaSayisi,toplamVeriSayisi,aktifSayfa}) %> <!-- sayfalama import-->
+</div>

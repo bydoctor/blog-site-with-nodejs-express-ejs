@@ -1,0 +1,42 @@
+<%
+    let yukseklik='';
+    // eğer index undefined ise tek bir makale gösteriliyordur.
+    // eğer index bir sayı ise ana sayfadaki tüm makaleler gösteriliyordur.
+    if(index== undefined){
+        yukseklik='600';
+    }else{
+        const mod=index%10;
+
+        if(mod===0){
+            yukseklik='600';
+        }else{
+            yukseklik="60"+mod; // fotoğrafların her biri farklı olsun diye 900,901 .. vs
+        }
+
+    }
+
+%>
+
+<div class="card">
+    <div class="card-image">
+        <figure class="image is-4by3">
+            <img src="https://source.unsplash.com/random/800x<%=yukseklik%>" alt="Placeholder image">
+        </figure>
+    </div>
+    <div class="card-content">
+        <div class="media">
+
+            <div class="media-content">
+                <p class="title is-4"><%-makale.title.rendered%></p>
+            </div>
+        </div>
+
+        <div class="content">
+            <%- index==undefined ? makale.content.rendered: makale.excerpt.rendered.slice(0,50)%> <!-- makale özet kısmına 100 karakter yazılsın.-->
+            <%if(index !== undefined){%>
+                <a href="/blog/<%= makale.id%>">Devamını Oku</a>
+            <%}%>
+
+        </div>
+    </div>
+</div>
